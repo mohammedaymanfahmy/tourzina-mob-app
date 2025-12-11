@@ -7871,6 +7871,11 @@ react-native-is-edge-to-edge@^1.2.1:
   resolved "https://registry.npmjs.org/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.2.1.tgz"
   integrity sha512-FLbPWl/MyYQWz+KwqOZsSyj2JmLKglHatd3xLZWskXOpRaio4LfEDEz8E/A6uD8QoTHW6Aobw1jbEwK7KMgR7Q==
 
+react-native-make@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/react-native-make/-/react-native-make-1.0.1.tgz"
+  integrity sha512-+Wo2JSp6NyeKleH9aZcdPsW7X8KiBOZkwx6L65UkPCDbk4FlcYd4yw+YIuK0SUVFkUaFHTU1n8LjIjFpT+YICA==
+
 react-native-mmkv@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/react-native-mmkv/-/react-native-mmkv-3.3.0.tgz"

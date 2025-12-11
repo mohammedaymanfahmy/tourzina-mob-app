@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splashscreen_bg">#000000</color>
+    <!-- Splash screen colors matching theme - Light Mode -->
+    <color name="splashscreen_bg">#FFFFFF</color>
+    <color name="splashscreen_primary">#0F77F0</color>
+    <color name="splashscreen_text_tertiary">#A4ACB9</color>
 </resources>
