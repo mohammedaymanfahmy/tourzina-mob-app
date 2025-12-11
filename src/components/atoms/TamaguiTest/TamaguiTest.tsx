@@ -1,13 +1,3 @@
-/**
- * Tamagui Test Component
- * 
- * Demonstrates Tamagui integration with custom theme colors:
- * - Configured Tamagui with primary, grey, success, error, and warning color palettes
- * - Integrated light/dark theme modes with semantic color tokens
- * - Uses pixel values for spacing, sizing, and borders
- * - Theme colors automatically sync with app theme system
- */
-
 import { Button, Card, Paragraph, Separator, Text, XStack, YStack } from 'tamagui';
 
 export function TamaguiTest() {
