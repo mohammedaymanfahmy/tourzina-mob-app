@@ -7,12 +7,14 @@ import { initReactI18next } from 'react-i18next';
 
 import en from './en-EN.json';
 import fr from './fr-FR.json';
+import ar from './ar-AR.json';
 
 export const defaultNS = 'tourzinamobapp';
 
 export const resources = {
   'en-EN': en,
   'fr-FR': fr,
+  'ar-AR': ar,
 } as const satisfies Record<Language, unknown>;
 
 void i18n.use(initReactI18next).init({

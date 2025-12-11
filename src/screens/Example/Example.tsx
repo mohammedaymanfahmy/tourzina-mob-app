@@ -7,6 +7,7 @@ import { useTheme } from '@/theme';
 
 import { AssetByVariant, IconByVariant, Skeleton } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
+import { TamaguiTest } from '@/components/atoms/TamaguiTest/TamaguiTest';
 
 const MAX_RANDOM_ID = 9;
 
@@ -53,7 +54,7 @@ function Example() {
         handleResetError();
       }}
     >
-      <ScrollView>
+      {/* <ScrollView>
         <View
           style={[
             layout.justifyCenter,
@@ -128,7 +129,8 @@ function Example() {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView> */}
+      <TamaguiTest />
     </SafeScreen>
   );
 }
