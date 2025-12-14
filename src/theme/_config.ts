@@ -19,7 +19,7 @@ export const colors = {
     100: '#DFE1E7',
     200: '#C1C7D0',
     25: '#F6F8FA',
-    300: '#030404ff',
+    300: '#A4ACB9',
     400: '#818898',
     50: '#ECEFF3',
     500: '#666D80',
@@ -59,6 +59,7 @@ const colorsLight = {
 
   // New semantic colors from palette
   background: colors.grey[0],
+  secondaryBg: colors.grey[0],
   border: colors.grey[200],
   disabled: colors.grey[200],
   divider: colors.grey[50],
@@ -84,11 +85,12 @@ const colorsDark = {
 
   // New semantic colors from palette
   background: colors.grey[900],
+  secondaryBg: colors.grey[800],
   border: colors.grey[700],
-  disabled: colors.grey[200],
+  disabled: colors.grey[800],
   divider: colors.grey[800],
   error: colors.error[100],
-  primary: colors.primary[100],
+  primary: colors.primary[500],
   success: colors.success[50],
   text: colors.grey[0],
   textSecondary: colors.grey[300],
@@ -100,7 +102,7 @@ const colorsDark = {
   lightGray: colors.grey[800],
   primaryHover: colors.primary[200],
   errorHover: colors.error[100],
-  black: '#FFFFFF',
+  black: '#000000',
 
 } as const;
 

@@ -4,6 +4,7 @@ import type { Language } from '@/hooks/language/schema';
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { MMKV } from 'react-native-mmkv';
 
 import en from './en-EN.json';
 import fr from './fr-FR.json';
@@ -17,10 +18,15 @@ export const resources = {
   'ar-AR': ar,
 } as const satisfies Record<Language, unknown>;
 
+// Create storage instance directly
+const storage = new MMKV();
+const LANGUAGE_KEY = 'app_language';
+const savedLanguage = storage.getString(LANGUAGE_KEY) as Language | undefined;
+
 void i18n.use(initReactI18next).init({
   defaultNS,
   fallbackLng: 'fr-FR',
-  lng: 'fr-FR',
+  lng: savedLanguage || 'fr-FR', // Use saved language if available
   resources,
 });
 

@@ -51,14 +51,48 @@ function Example() {
 
   return (
     <SafeScreen
+      style={{ backgroundColor: colors.background }}
       isError={fetchOneUserQuery.isError}
       onResetError={() => {
         handleResetError();
       }}
     >
-      <SocialButtonExamples />
-      {/* <ButtonExamples /> */}
-      {/* <TamaguiTest /> */}
+      <ScrollView style={{ flex: 1, padding: 20 }}>
+        {/* Test Buttons */}
+        <View style={{ gap: 16, marginBottom: 24 }}>
+          <TouchableOpacity
+            onPress={onChangeTheme}
+            style={{
+              backgroundColor: colors.primary,
+              padding: 16,
+              borderRadius: 12,
+              alignItems: 'center',
+            }}
+          >
+            <Text style={{ color: colors.white, fontSize: 16, fontWeight: '600' }}>
+              Toggle Theme ({variant === 'default' ? 'Light' : 'Dark'})
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={toggleLanguage}
+            style={{
+              backgroundColor: colors.primary,
+              padding: 16,
+              borderRadius: 12,
+              alignItems: 'center',
+            }}
+          >
+            <Text style={{ color: colors.white, fontSize: 16, fontWeight: '600' }}>
+              Toggle Language
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <SocialButtonExamples />
+        <ButtonExamples />
+        {/* <TamaguiTest /> */}
+      </ScrollView>
     </SafeScreen>
   );
 }

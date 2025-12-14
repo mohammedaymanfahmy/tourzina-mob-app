@@ -22,6 +22,17 @@
     },
     "startup": {
       "version": "Version {{version}}"
+    },
+    "onboarding": {
+      "slide1_title": "Find a good place to heal yourself",
+      "slide1_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide2_title": "Explore various natural beauty of Indonesia",
+      "slide2_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide3_title": "Explore the new way to find good place easily",
+      "slide3_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "next": "Next",
+      "skip": "Skip",
+      "explore_now": "Explore Now"
     }
   }
 }

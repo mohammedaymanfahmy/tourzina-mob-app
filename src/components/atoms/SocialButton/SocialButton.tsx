@@ -28,12 +28,14 @@ type SocialButtonProps = {
     readonly onPress?: () => void;
     readonly size?: SocialButtonSize;
     readonly testID?: string;
+    readonly iconMode?: 'light' | 'dark';
 } & Omit<PressableProps, 'disabled' | 'onPress'>;
 
 const SIZE_CONFIG = {
-    large: { height: 48, paddingHorizontal: 24, fontSize: 16, iconSize: 20, borderRadius: 24 },
-    medium: { height: 40, paddingHorizontal: 20, fontSize: 14, iconSize: 18, borderRadius: 20 },
-    small: { height: 32, paddingHorizontal: 16, fontSize: 12, iconSize: 16, borderRadius: 16 },
+    large: { height: 52, paddingHorizontal: 24, fontSize: 20, iconSize: 24, borderRadius: 26 },
+    medium: { height: 48, paddingHorizontal: 20, fontSize: 16, iconSize: 18, borderRadius: 24 },
+    small: { height: 40, paddingHorizontal: 16, fontSize: 14, iconSize: 16, borderRadius: 20 },
+    xSmall: { height: 30, paddingHorizontal: 12, fontSize: 12, iconSize: 16, borderRadius: 15 },
 } as const;
 
 // Social icon components map
@@ -53,9 +55,10 @@ function SocialButton({
     onPress,
     size = 'medium',
     testID,
+    iconMode = 'light',
     ...props
 }: SocialButtonProps) {
-    const { colors, variant: themeVariant } = useTheme();
+    const { colors } = useTheme();
     const [isFocused, setIsFocused] = useState(false);
     const sizeConfig = SIZE_CONFIG[size];
 
@@ -65,7 +68,7 @@ function SocialButton({
         }
 
         const variantMap = {
-            secondary: { bg: colors.white, text: colors.text, border: colors.border, shadow: colors.border },
+            secondary: { bg: colors.secondaryBg, text: colors.text, border: colors.border, shadow: colors.border },
             primary: { bg: colors.primary, text: colors.white, border: undefined, shadow: colors.primary },
             black: { bg: colors.black, text: colors.white, border: undefined, shadow: colors.black },
         };
@@ -88,10 +91,12 @@ function SocialButton({
         opacity: disabled ? 0.6 : 1,
     };
 
-    // Apple needs dark icon on light backgrounds (secondary), others use theme variant
-    const usesDarkIcon = provider === 'apple'
-        ? (variant === 'secondary' || disabled)
-        : (themeVariant === 'dark');
+    // Determine icon mode: explicit prop -> apple logic -> default light
+    const usesDarkIcon = iconMode
+        ? iconMode === 'dark'
+        : provider === 'apple'
+            ? (variant === 'secondary' || disabled)
+            : false;
     const IconComponent = SOCIAL_ICONS[provider][usesDarkIcon ? 'dark' : 'light'];
 
     const renderContent = () => {

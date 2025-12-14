@@ -1,10 +1,16 @@
 import i18next from 'i18next';
 import { I18nManager } from 'react-native';
+import { MMKV } from 'react-native-mmkv';
 
 import { SupportedLanguages } from './schema';
 
+const LANGUAGE_KEY = 'app_language';
+const storage = new MMKV();
+
 const changeLanguage = (lang: SupportedLanguages) => {
   void i18next.changeLanguage(lang);
+  storage.set(LANGUAGE_KEY, lang); // Persist language
+
   const isRTL = lang === 'ar-AR';
   if (I18nManager.isRTL !== isRTL) {
     I18nManager.forceRTL(isRTL);

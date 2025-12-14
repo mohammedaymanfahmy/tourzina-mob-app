@@ -20,12 +20,14 @@ type ButtonProps = {
   readonly size?: ButtonSize;
   readonly testID?: string;
   readonly variant?: ButtonVariant;
+  readonly fullWidth?: boolean;
 } & Omit<PressableProps, 'disabled' | 'onPress'>;
 
 const SIZE_CONFIG = {
-  large: { height: 48, paddingHorizontal: 24, fontSize: 16, iconSize: 20, borderRadius: 24 },
-  medium: { height: 40, paddingHorizontal: 20, fontSize: 14, iconSize: 18, borderRadius: 20 },
-  small: { height: 32, paddingHorizontal: 16, fontSize: 12, iconSize: 16, borderRadius: 16 },
+  large: { height: 56, paddingHorizontal: 24, fontSize: 20, iconSize: 24, borderRadius: 28 },
+  medium: { height: 48, paddingHorizontal: 20, fontSize: 16, iconSize: 18, borderRadius: 24 },
+  small: { height: 40, paddingHorizontal: 16, fontSize: 14, iconSize: 16, borderRadius: 20 },
+  xSmall: { height: 30, paddingHorizontal: 12, fontSize: 12, iconSize: 16, borderRadius: 15 },
 } as const;
 
 function Button({
@@ -37,6 +39,7 @@ function Button({
   size = 'medium',
   testID,
   variant = 'primary',
+  fullWidth = false,
   ...props
 }: ButtonProps) {
   const { colors } = useTheme();
@@ -45,12 +48,12 @@ function Button({
 
   const styles = useMemo(() => {
     if (disabled) {
-      return { bg: colors.disabled, text: colors.disabled, icon: colors.disabled, shadow: undefined, border: undefined };
+      return { bg: colors.disabled, text: colors.white, icon: colors.white, shadow: undefined, border: colors.border };
     }
 
     const variantMap = {
       primary: { bg: colors.primary, text: colors.white, icon: colors.white, shadow: colors.primary, border: undefined },
-      secondary: { bg: colors.white, text: colors.text, icon: colors.text, border: colors.border, shadow: colors.border },
+      secondary: { bg: colors.white, text: colors.black, icon: colors.black, border: colors.border, shadow: colors.border },
       destructive: { bg: colors.error, text: colors.white, icon: colors.white, shadow: colors.error, border: undefined },
     };
 
@@ -61,17 +64,22 @@ function Button({
 
   const buttonStyle: StyleProp<ViewStyle> = {
     height: isIconOnly ? sizeConfig.height : undefined,
-    width: isIconOnly ? sizeConfig.height : undefined,
+    width: isIconOnly
+      ? sizeConfig.height
+      : fullWidth
+        ? '100%'
+        : undefined,
     minHeight: !isIconOnly ? sizeConfig.height : undefined,
     paddingHorizontal: isIconOnly ? 0 : sizeConfig.paddingHorizontal,
     borderRadius: isIconOnly ? sizeConfig.height / 2 : sizeConfig.borderRadius,
     backgroundColor: styles.bg,
     borderColor: styles.border,
-    borderWidth: styles.border ? 1 : 0,
+    borderWidth: styles.border ? 2 : 0,
     alignItems: 'center',
     justifyContent: 'center',
     opacity: disabled ? 0.6 : 1,
   };
+
 
   const renderContent = () => {
     const Icon = IconComponent ? <IconComponent size={sizeConfig.iconSize} color={styles.icon} /> : null;

@@ -22,6 +22,17 @@
     },
     "startup": {
       "version": "Version {{version}}"
+    },
+    "onboarding": {
+      "slide1_title": "Trouvez un bon endroit pour vous ressourcer",
+      "slide1_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide2_title": "Explorez les beautés naturelles de l'Indonésie",
+      "slide2_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide3_title": "Découvrez une nouvelle façon de trouver facilement de bons endroits",
+      "slide3_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "next": "Suivant",
+      "skip": "Passer",
+      "explore_now": "Explorer maintenant"
     }
   }
 }
