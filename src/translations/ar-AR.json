@@ -33,6 +33,23 @@
       "next": "التالي",
       "skip": "تخطي",
       "explore_now": "استكشف الآن"
+    },
+    "auth": {
+      "get_started_title": "ابدأ الآن",
+      "get_started_subtitle": "مرحباً! لنبدأ رحلتك.",
+      "or_continue_with": "أو تابع باستخدام",
+      "sign_in_with_email": "سجل الدخول بالبريد الإلكتروني",
+      "sign_in_with_google": "تابع باستخدام Google",
+      "sign_in_with_facebook": "تابع باستخدام Facebook",
+      "sign_in_with_apple": "تابع باستخدام Apple",
+      "dont_have_account": "ليس لديك حساب؟",
+      "sign_up": "سجل الآن"
+    },
+    "language": {
+      "select_language": "اختر اللغة"
+    },
+    "common": {
+      "continue": "متابعة"
     }
   }
 }

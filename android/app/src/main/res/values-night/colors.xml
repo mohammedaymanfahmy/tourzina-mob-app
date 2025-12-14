@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Splash screen colors matching theme - Dark Mode -->
-    <color name="splashscreen_bg">#0D0D12</color>
+    <color name="splashscreen_bg">#0b0b10</color>
     <color name="splashscreen_primary">#B5D5FA</color>
     <color name="splashscreen_text_tertiary">#666D80</color>
 </resources>

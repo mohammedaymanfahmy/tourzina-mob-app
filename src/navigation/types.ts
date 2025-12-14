@@ -10,4 +10,5 @@ export type RootStackParamList = {
   [Paths.Onboarding]: undefined;
   [Paths.Startup]: undefined;
   [Paths.GetStarted]: undefined;
+  [Paths.LanguageSelection]: undefined;
 };

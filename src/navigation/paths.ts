@@ -3,4 +3,5 @@ export const enum Paths {
   Onboarding = 'onboarding',
   Startup = 'startup',
   GetStarted = 'get_started',
+  LanguageSelection = 'language_selection',
 }

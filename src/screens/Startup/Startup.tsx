@@ -3,7 +3,7 @@ import type { RootScreenProps } from '@/navigation/types';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Image, View } from 'react-native';
+import { ActivityIndicator, Image } from 'react-native';
 import { Text, YStack } from 'tamagui';
 
 import { Paths } from '@/navigation/paths';
@@ -32,56 +32,56 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
     if (isSuccess) {
       navigation.reset({
         index: 0,
-        routes: [{ name: Paths.Onboarding }],
+        routes: [{ name: Paths.LanguageSelection }],
       });
     }
   }, [isSuccess, navigation]);
 
   return (
     <SafeScreen>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between', // distribute logo and version
-          alignItems: 'center',
-          backgroundColor: colors.background,
-          paddingVertical: 40, // optional padding top & bottom
-        }}
-      >
-        {/* Center Logo */}
+      <SafeScreen>
         <YStack
-          space={24}
+          flex={1}
+          justifyContent="space-between"
           alignItems="center"
-          justifyContent="center"
-          flex={1} // occupy remaining space
+          backgroundColor={colors.background}
+          paddingVertical={40}
         >
-          <Image
-            source={Logo}
-            style={{
-              width: 105,
-              height: 105,
-              resizeMode: 'contain',
-            }}
-          />
+          {/* Center Logo */}
+          <YStack
+            space={24}
+            alignItems="center"
+            justifyContent="center"
+            flex={1}
+          >
+            <Image
+              source={Logo}
+              style={{
+                width: 105,
+                height: 105,
+                resizeMode: 'contain',
+              }}
+            />
 
-          {isFetching && (
-            <YStack space={12} alignItems="center" marginTop={20}>
-              <ActivityIndicator size="large" color={colors.primary} />
-            </YStack>
-          )}
+            {isFetching && (
+              <YStack space={12} alignItems="center" marginTop={20}>
+                <ActivityIndicator size="large" color={colors.primary} />
+              </YStack>
+            )}
 
-          {isError && (
-            <Text color={colors.error} fontSize={14} textAlign="center" marginTop={20}>
-              {t('common_error')}
-            </Text>
-          )}
+            {isError && (
+              <Text color={colors.error} fontSize={14} textAlign="center" marginTop={20}>
+                {t('common_error')}
+              </Text>
+            )}
+          </YStack>
+
+          {/* Version at bottom */}
+          <Text color={colors.textTertiary} fontSize={12}>
+            {t('startup.version', { version: '1.0.0' })}
+          </Text>
         </YStack>
-
-        {/* Version at bottom */}
-        <Text color={colors.textTertiary} fontSize={12}>
-          {t('startup.version', { version: '1.0.0' })}
-        </Text>
-      </View>
+      </SafeScreen>
     </SafeScreen>
   );
 }

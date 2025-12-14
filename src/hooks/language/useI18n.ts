@@ -2,6 +2,8 @@ import i18next from 'i18next';
 import { I18nManager } from 'react-native';
 import { MMKV } from 'react-native-mmkv';
 
+import RNRestart from 'react-native-restart';
+
 import { SupportedLanguages } from './schema';
 
 const LANGUAGE_KEY = 'app_language';
@@ -15,6 +17,9 @@ const changeLanguage = (lang: SupportedLanguages) => {
   if (I18nManager.isRTL !== isRTL) {
     I18nManager.forceRTL(isRTL);
     I18nManager.allowRTL(isRTL);
+    setTimeout(() => {
+      RNRestart.restart();
+    }, 50);
   }
 };
 

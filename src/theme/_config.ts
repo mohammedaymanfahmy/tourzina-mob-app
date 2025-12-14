@@ -26,15 +26,16 @@ export const colors = {
     600: '#36394A',
     700: '#272835',
     800: '#1A1B25',
-    900: '#0D0D12',
+    900: 'rgb(11,11,16)',
   },
   primary: {
+    50: '#E7F1FE',
     100: '#B5D5FA',
     200: '#91C0F8',
     300: '#5EA4F5',
     400: '#3F92F3',
-    50: '#E7F1FE',
     500: '#0F77F0',
+    900: '#063265',
   },
   success: {
     0: '#EFFEFA',
@@ -70,6 +71,7 @@ const colorsLight = {
   textSecondary: colors.grey[500],
   textTertiary: colors.grey[300],
   warning: colors.warning[200],
+  selected: colors.primary[50],
 
   // Additional shades for button states
   white: colors.grey[0],
@@ -96,10 +98,11 @@ const colorsDark = {
   textSecondary: colors.grey[300],
   textTertiary: colors.grey[500],
   warning: colors.warning[50],
+  selected: colors.primary[900],
 
   // Additional shades for button states
   white: colors.grey[0],
-  lightGray: colors.grey[800],
+
   primaryHover: colors.primary[200],
   errorHover: colors.error[100],
   black: '#000000',
