@@ -14,6 +14,14 @@
       "title": "Oops! Something went wrong.",
       "description": "We are sorry for the inconvenience. Please try again later.",
       "cta": "Reload the screen"
+    },
+    "social_buttons": {
+      "continue_with_apple": "Continue with Apple",
+      "continue_with_facebook": "Continue with Facebook",
+      "continue_with_google": "Continue with Google"
+    },
+    "startup": {
+      "version": "Version {{version}}"
     }
   }
 }

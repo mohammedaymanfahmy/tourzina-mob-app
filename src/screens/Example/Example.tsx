@@ -8,6 +8,8 @@ import { useTheme } from '@/theme';
 import { AssetByVariant, IconByVariant, Skeleton } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
 import { TamaguiTest } from '@/components/atoms/TamaguiTest/TamaguiTest';
+import { ButtonExamples } from '@/components/atoms/Button/Button.example';
+import { SocialButtonExamples } from '@/components/atoms/SocialButton/SocialButton.example';
 
 const MAX_RANDOM_ID = 9;
 
@@ -54,83 +56,9 @@ function Example() {
         handleResetError();
       }}
     >
-      {/* <ScrollView>
-        <View
-          style={[
-            layout.justifyCenter,
-            layout.itemsCenter,
-            gutters.marginTop_80,
-          ]}
-        >
-          <View
-            style={[layout.relative, backgrounds.gray100, components.circle250]}
-          />
-
-          <View style={[layout.absolute, gutters.paddingTop_80]}>
-            <AssetByVariant
-              path="tom"
-              resizeMode="contain"
-              style={{ height: 300, width: 300 }}
-            />
-          </View>
-        </View>
-
-        <View style={[gutters.paddingHorizontal_32, gutters.marginTop_40]}>
-          <View style={[gutters.marginTop_40]}>
-            <Text style={[fonts.size_40, fonts.gray800, fonts.bold]}>
-              {t('screen_example.title')}
-            </Text>
-            <Text
-              style={[fonts.size_16, fonts.gray200, gutters.marginBottom_40]}
-            >
-              {t('screen_example.description')}
-            </Text>
-          </View>
-
-          <View
-            style={[
-              layout.row,
-              layout.justifyBetween,
-              layout.fullWidth,
-              gutters.marginTop_16,
-            ]}
-          >
-            <Skeleton
-              height={64}
-              loading={fetchOneUserQuery.isLoading}
-              style={{ borderRadius: components.buttonCircle.borderRadius }}
-              width={64}
-            >
-              <TouchableOpacity
-                onPress={() => {
-                  setCurrentId(Math.ceil(Math.random() * MAX_RANDOM_ID + 1));
-                }}
-                style={[components.buttonCircle, gutters.marginBottom_16]}
-                testID="fetch-user-button"
-              >
-                <IconByVariant path="send" stroke={colors.purple500} />
-              </TouchableOpacity>
-            </Skeleton>
-
-            <TouchableOpacity
-              onPress={onChangeTheme}
-              style={[components.buttonCircle, gutters.marginBottom_16]}
-              testID="change-theme-button"
-            >
-              <IconByVariant path="theme" stroke={colors.purple500} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={toggleLanguage}
-              style={[components.buttonCircle, gutters.marginBottom_16]}
-              testID="change-language-button"
-            >
-              <IconByVariant path="language" stroke={colors.purple500} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView> */}
-      <TamaguiTest />
+      <SocialButtonExamples />
+      {/* <ButtonExamples /> */}
+      {/* <TamaguiTest /> */}
     </SafeScreen>
   );
 }

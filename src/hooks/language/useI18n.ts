@@ -1,9 +1,15 @@
 import i18next from 'i18next';
+import { I18nManager } from 'react-native';
 
 import { SupportedLanguages } from './schema';
 
 const changeLanguage = (lang: SupportedLanguages) => {
   void i18next.changeLanguage(lang);
+  const isRTL = lang === 'ar-AR';
+  if (I18nManager.isRTL !== isRTL) {
+    I18nManager.forceRTL(isRTL);
+    I18nManager.allowRTL(isRTL);
+  }
 };
 
 const toggleLanguage = () => {
@@ -16,7 +22,7 @@ const toggleLanguage = () => {
     (lang) => lang === (i18next.language as string),
   );
   const nextIndex = (currentIndex + 1) % languageCycle.length;
-  void i18next.changeLanguage(languageCycle[nextIndex]);
+  changeLanguage(languageCycle[nextIndex]);
 };
 
 export const useI18n = () => {

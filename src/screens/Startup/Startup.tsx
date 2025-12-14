@@ -42,7 +42,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
       <View
         style={{
           flex: 1,
-          justifyContent: 'space-between' , // distribute logo and version
+          justifyContent: 'space-between', // distribute logo and version
           alignItems: 'center',
           backgroundColor: colors.background,
           paddingVertical: 40, // optional padding top & bottom
@@ -79,7 +79,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
 
         {/* Version at bottom */}
         <Text color={colors.textTertiary} fontSize={12}>
-          Version 1.0.0
+          {t('startup.version', { version: '1.0.0' })}
         </Text>
       </View>
     </SafeScreen>
