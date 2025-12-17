@@ -14,6 +14,42 @@
       "title": "Oups ! Quelque chose s'est mal passé.",
       "description": "Nous sommes désolés pour le désagrément. Veuillez réessayer plus tard.",
       "cta": "Recharger l'écran"
+    },
+    "social_buttons": {
+      "continue_with_apple": "Continuer avec Apple",
+      "continue_with_facebook": "Continuer avec Facebook",
+      "continue_with_google": "Continuer avec Google"
+    },
+    "startup": {
+      "version": "Version {{version}}"
+    },
+    "onboarding": {
+      "slide1_title": "Trouvez un bon endroit pour vous ressourcer",
+      "slide1_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide2_title": "Explorez les beautés naturelles de l'Indonésie",
+      "slide2_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide3_title": "Découvrez une nouvelle façon de trouver facilement de bons endroits",
+      "slide3_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "next": "Suivant",
+      "skip": "Passer",
+      "explore_now": "Explorer maintenant"
+    },
+    "auth": {
+      "get_started_title": "Commençons",
+      "get_started_subtitle": "Bienvenue ! Connectez-vous à votre compte.",
+      "or_continue_with": "Ou continuer avec",
+      "sign_in_with_email": "Se connecter avec Email",
+      "sign_in_with_google": "Continuer avec Google",
+      "sign_in_with_facebook": "Continuer avec Facebook",
+      "sign_in_with_apple": "Continuer avec Apple",
+      "dont_have_account": "Vous n'avez pas de compte ?",
+      "sign_up": "S'inscrire"
+    },
+    "language": {
+      "select_language": "Choisir la langue"
+    },
+    "common": {
+      "continue": "Continuer"
     }
   }
 }

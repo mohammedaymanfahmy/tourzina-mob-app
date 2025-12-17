@@ -14,6 +14,42 @@
       "title": "Oops! Something went wrong.",
       "description": "We are sorry for the inconvenience. Please try again later.",
       "cta": "Reload the screen"
+    },
+    "social_buttons": {
+      "continue_with_apple": "Continue with Apple",
+      "continue_with_facebook": "Continue with Facebook",
+      "continue_with_google": "Continue with Google"
+    },
+    "startup": {
+      "version": "Version {{version}}"
+    },
+    "onboarding": {
+      "slide1_title": "Find a good place to heal yourself",
+      "slide1_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide2_title": "Explore various natural beauty of Indonesia",
+      "slide2_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "slide3_title": "Explore the new way to find good place easily",
+      "slide3_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "next": "Next",
+      "skip": "Skip",
+      "explore_now": "Explore Now"
+    },
+    "auth": {
+      "get_started_title": "Get Started",
+      "get_started_subtitle": "Welcome! Let's dive in into account.",
+      "or_continue_with": "Or continue with",
+      "sign_in_with_email": "Sign in with Email",
+      "sign_in_with_google": "Sign in with Google",
+      "sign_in_with_facebook": "Sign in with Facebook",
+      "sign_in_with_apple": "Sign in with Apple",
+      "dont_have_account": "Don't have an account?",
+      "sign_up": "Sign Up"
+    },
+    "language": {
+      "select_language": "Select Language"
+    },
+    "common": {
+      "continue": "Continue"
     }
   }
 }

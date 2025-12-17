@@ -5,12 +5,12 @@ import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 export const enum Variant {
   DARK = 'dark',
 }
-const colors = {
+export const colors = {
   error: {
-    0: '#FFF0F3', 
+    0: '#FFF0F3',
     100: '#DF1C41',
     200: '#96132C',
-     25: '#FADBE1',
+    25: '#FADBE1',
     300: '#710E21',
     50: '#ED8296',
   },
@@ -26,90 +26,87 @@ const colors = {
     600: '#36394A',
     700: '#272835',
     800: '#1A1B25',
-    900: '#0D0D12',
+    900: 'rgb(11,11,16)',
   },
   primary: {
+    50: '#E7F1FE',
     100: '#B5D5FA',
     200: '#91C0F8',
     300: '#5EA4F5',
     400: '#3F92F3',
-    50: '#E7F1FE',
     500: '#0F77F0',
+    900: '#063265',
   },
   success: {
-   0: '#EFFEFA', 
+    0: '#EFFEFA',
     100: '#40C4AA',
     200: '#28806F',
-     25: '#DDF3EF',
+    25: '#DDF3EF',
     300: '#184E44',
     50: '#9EE1D4',
   },
-  
+
   warning: {
-    0: '#FFF6E0', 
+    0: '#FFF6E0',
     100: '#FFBE4C',
     200: '#966422',
-     25: '#FAEDCC',
+    25: '#FAEDCC',
     300: '#5C3D1F',
     50: '#FCDA83',
   },
-  
+
 };
 const colorsLight = {
-  // Old colors 
-  gray100: '#DFDFDF',
-  gray200: '#A1A1A1',
-  gray400: '#4D4D4D',
-  gray50: '#EFEFEF',
-  gray800: '#303030',
-  purple100: '#E1E1EF',
-  purple50: '#1B1A23',
-  purple500: '#44427D',
-  red500: '#C13333',
-  skeleton: '#A1A1A1',
-  
+
   // New semantic colors from palette
   background: colors.grey[0],
-  border: colors.grey[100],
-  disabled: colors.grey[300],
+  secondaryBg: colors.grey[0],
+  border: colors.grey[200],
+  disabled: colors.grey[200],
   divider: colors.grey[50],
-  error: colors.error[200],
+  error: colors.error[100],
   primary: colors.primary[500],
   success: colors.success[200],
   text: colors.grey[900],
   textSecondary: colors.grey[500],
   textTertiary: colors.grey[300],
   warning: colors.warning[200],
-  
+  selected: colors.primary[50],
+
+  // Additional shades for button states
+  white: colors.grey[0],
+  lightGray: colors.grey[25],
+  primaryHover: colors.primary[50],
+  errorHover: colors.error[100],
+  black: '#000000',
+
 
 } as const;
 
 const colorsDark = {
-  // Old colors 
-  gray100: '#000000',
-  gray200: '#BABABA',
-  gray400: '#969696',
-  gray50: '#EFEFEF',
-  gray800: '#E0E0E0',
-  purple100: '#252732',
-  purple50: '#1B1A23',
-  purple500: '#A6A4F0',
-  red500: '#C13333',
-  skeleton: '#303030',
-  
+
   // New semantic colors from palette
   background: colors.grey[900],
+  secondaryBg: colors.grey[800],
   border: colors.grey[700],
-  disabled: colors.grey[600],
+  disabled: colors.grey[800],
   divider: colors.grey[800],
-  error: colors.error[50],
-  primary: colors.primary[100],
+  error: colors.error[100],
+  primary: colors.primary[500],
   success: colors.success[50],
   text: colors.grey[0],
   textSecondary: colors.grey[300],
   textTertiary: colors.grey[500],
   warning: colors.warning[50],
-  
+  selected: colors.primary[900],
+
+  // Additional shades for button states
+  white: colors.grey[0],
+
+  primaryHover: colors.primary[200],
+  errorHover: colors.error[100],
+  black: '#000000',
+
 } as const;
 
 const sizes = [12, 16, 24, 32, 40, 80] as const;
@@ -129,8 +126,6 @@ export const config = {
   gutters: sizes,
   navigationColors: {
     ...DefaultTheme.colors,
-    background: colorsLight.gray50,
-    card: colorsLight.gray50,
   },
   variants: {
     dark: {
@@ -144,8 +139,6 @@ export const config = {
       },
       navigationColors: {
         ...DarkTheme.colors,
-        background: colorsDark.purple50,
-        card: colorsDark.purple50,
       },
     },
   },

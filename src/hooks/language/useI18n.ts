@@ -1,9 +1,26 @@
 import i18next from 'i18next';
+import { I18nManager } from 'react-native';
+import { MMKV } from 'react-native-mmkv';
+
+import RNRestart from 'react-native-restart';
 
 import { SupportedLanguages } from './schema';
 
+const LANGUAGE_KEY = 'app_language';
+const storage = new MMKV();
+
 const changeLanguage = (lang: SupportedLanguages) => {
   void i18next.changeLanguage(lang);
+  storage.set(LANGUAGE_KEY, lang); // Persist language
+
+  const isRTL = lang === 'ar-AR';
+  if (I18nManager.isRTL !== isRTL) {
+    I18nManager.forceRTL(isRTL);
+    I18nManager.allowRTL(isRTL);
+    setTimeout(() => {
+      RNRestart.restart();
+    }, 50);
+  }
 };
 
 const toggleLanguage = () => {
@@ -16,7 +33,7 @@ const toggleLanguage = () => {
     (lang) => lang === (i18next.language as string),
   );
   const nextIndex = (currentIndex + 1) % languageCycle.length;
-  void i18next.changeLanguage(languageCycle[nextIndex]);
+  changeLanguage(languageCycle[nextIndex]);
 };
 
 export const useI18n = () => {
