@@ -1,7 +1,7 @@
 import * as z from 'zod';
 
 export const enum SupportedLanguages {
-   AR_AR = 'ar-AR',
+  AR_AR = 'ar-AR',
   EN_EN = 'en-EN',
   FR_FR = 'fr-FR',
 }
