@@ -1,4 +1,4 @@
-import { createTamagui, createTokens } from 'tamagui';
+import { createTamagui, createTokens, createFont } from 'tamagui';
 
 // Import color palette from your theme config
 const colors = {
@@ -176,12 +176,28 @@ const config = createTamagui({
       disabled: colors.grey[600],
     },
   },
+  fonts: {
+    heading: createFont({
+      family: 'System',
+      size: { 1: 11, 2: 12, 3: 13, 4: 14, 5: 16, 6: 18, 7: 20, 8: 22, 9: 30, 10: 42, 11: 52, 12: 62, 13: 72, 14: 92, 15: 114, 16: 124 },
+      lineHeight: { 1: 17, 2: 22, 3: 25 },
+      weight: { 1: '300', 3: '600' },
+      letterSpacing: { 1: 0, 2: -1 },
+    }),
+    body: createFont({
+      family: 'System',
+      size: { 1: 11, 2: 12, 3: 13, 4: 14, 5: 16, 6: 18, 7: 20, 8: 22, 9: 30, 10: 42, 11: 52, 12: 62, 13: 72, 14: 92, 15: 114, 16: 124 },
+      lineHeight: { 1: 17, 2: 22, 3: 25 },
+      weight: { 1: '300', 3: '600' },
+      letterSpacing: { 1: 0, 2: -1 },
+    }),
+  },
 });
 
 export type AppConfig = typeof config;
 
 declare module 'tamagui' {
-  interface TamaguiCustomConfig extends AppConfig {}
+  interface TamaguiCustomConfig extends AppConfig { }
 }
 
 export default config;

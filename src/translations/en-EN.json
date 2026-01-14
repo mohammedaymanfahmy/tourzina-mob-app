@@ -48,6 +48,17 @@
     "language": {
       "select_language": "Select Language"
     },
+    "choose_location": {
+      "title": "Choose your Location",
+      "subtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "search_placeholder": "Search location",
+      "current_location": "Current Location",
+      "set_location": "Set Location"
+    },
+    "add_profile_photo": {
+      "title": "Add a Profile Photo",
+      "subtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
     "common": {
       "continue": "Continue"
     }

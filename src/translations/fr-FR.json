@@ -48,6 +48,17 @@
     "language": {
       "select_language": "Choisir la langue"
     },
+    "choose_location": {
+      "title": "Choisissez votre emplacement",
+      "subtitle": "Lorem Ipsum est simplement un texte factice de l'industrie de l'impression et de la composition.",
+      "search_placeholder": "Rechercher un lieu",
+      "current_location": "Emplacement actuel",
+      "set_location": "Définir l'emplacement"
+    },
+    "add_profile_photo": {
+      "title": "Ajouter une photo de profil",
+      "subtitle": "Lorem Ipsum est simplement un texte factice de l'industrie de l'impression et de la composition."
+    },
     "common": {
       "continue": "Continuer"
     }

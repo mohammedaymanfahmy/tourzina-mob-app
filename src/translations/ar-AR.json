@@ -48,6 +48,17 @@
     "language": {
       "select_language": "اختر اللغة"
     },
+    "choose_location": {
+      "title": "اختر موقعك",
+      "subtitle": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد.",
+      "search_placeholder": "البحث عن موقع",
+      "current_location": "الموقع الحالي",
+      "set_location": "تحديد الموقع"
+    },
+    "add_profile_photo": {
+      "title": "إضافة صورة ملف شخصي",
+      "subtitle": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد."
+    },
     "common": {
       "continue": "متابعة"
     }

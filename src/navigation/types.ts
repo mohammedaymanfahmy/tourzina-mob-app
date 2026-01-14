@@ -11,4 +11,7 @@ export type RootStackParamList = {
   [Paths.Startup]: undefined;
   [Paths.GetStarted]: undefined;
   [Paths.LanguageSelection]: undefined;
+  [Paths.ChooseLocation]: undefined;
+  [Paths.AddProfilePhoto]: undefined;
+  [Paths.ImageCrop]: { imageUri: string; onCrop: (uri: string) => void };
 };
