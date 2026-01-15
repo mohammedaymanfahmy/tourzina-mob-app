@@ -84,7 +84,7 @@ export function AddProfilePhotoScreen() {
                             ) : null}
                         </Circle>
                     </Pressable>
-
+                    {/* hjjjhjh */}
                     {/* Delete Icon */}
                     <Pressable onPress={handleDeletePhoto} style={{ position: 'absolute', bottom: 6, right: 6 }}>
                         <Circle
