@@ -9,7 +9,7 @@ import {
 import { Trash2 } from "@tamagui/lucide-icons";
 import SetupAccountLayout from "@/components/templates/SetupAccountLayout/SetupAccountLayout";
 import { useTranslation } from 'react-i18next';
-import { launchImageLibrary } from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "@/navigation/types";
@@ -21,32 +21,30 @@ export function AddProfilePhotoScreen() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     const handleSelectPhoto = async () => {
-        console.log("Attempting to open image library...");
+        console.log("Attempting to open image picker...");
         try {
-            const result = await launchImageLibrary({
+            const image = await ImagePicker.openPicker({
+                width: 300,
+                height: 300,
+                cropping: false,
                 mediaType: 'photo',
-                selectionLimit: 1,
+                // iOS specific
+                compressImageQuality: 0.8,
             });
-            console.log("Image picker result:", result);
 
-            if (result.didCancel || !result.assets || result.assets.length === 0) {
-                console.log("User cancelled or no assets");
-                return;
-            }
+            console.log("Image picker result:", image);
 
-            const uri = result.assets[0].uri;
-            if (uri) {
-                console.log("Selected URI:", uri);
+            if (image.path) {
+                // Navigate to custom crop screen
                 navigation.navigate(Paths.ImageCrop, {
-                    imageUri: uri,
-                    onCrop: (croppedUri) => {
-                        console.log("Cropped URI:", croppedUri);
+                    imageUri: image.path,
+                    onCrop: (croppedUri: string) => {
                         setSelectedImage(croppedUri);
                     },
                 });
             }
         } catch (error) {
-            console.error("Error launching image library:", error);
+            console.log("Error or cancellation:", error);
         }
     };
 
@@ -84,8 +82,8 @@ export function AddProfilePhotoScreen() {
                             ) : null}
                         </Circle>
                     </Pressable>
-                    {/* hjjjhjh */}
-                    {/* Delete Icon */}
+
+
                     <Pressable onPress={handleDeletePhoto} style={{ position: 'absolute', bottom: 6, right: 6 }}>
                         <Circle
                             size={44}

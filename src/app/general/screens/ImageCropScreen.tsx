@@ -12,7 +12,10 @@ import SetupAccountLayout from '@/components/templates/SetupAccountLayout/SetupA
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const MASK_SIZE = 280; // Size of the circular crop area
 
+import { useTranslation } from 'react-i18next';
+
 export default function ImageCropScreen() {
+    const { t } = useTranslation();
     const navigation = useNavigation();
     const route = useRoute<RouteProp<RootStackParamList, Paths.ImageCrop>>();
     const { imageUri, onCrop } = route.params;
@@ -68,46 +71,97 @@ export default function ImageCropScreen() {
     });
 
     const handleCrop = async () => {
-        if (!imageSize.width) return;
+        if (!imageSize.width || !imageSize.height) return;
 
-        // Current displayed image dimensions (approximate)
-        // We assume the image is rendered at width=SCREEN_WIDTH initially? 
-        // Let's assume we render it with width=SCREEN_WIDTH, height=auto
-        const displayWidth = SCREEN_WIDTH;
-        const displayHeight = (imageSize.height / imageSize.width) * SCREEN_WIDTH;
+        try {
+            // 1. Calculate the resolution ratio (Original / Displayed)
+            // The image is displayed with width = SCREEN_WIDTH
+            const ratio = imageSize.width / SCREEN_WIDTH;
 
-        // Center of screen coordinates
-        const screenCenterX = SCREEN_WIDTH / 2;
-        const screenCenterY = (SCREEN_HEIGHT - 100) / 2; // Approximate center of view area (adjust for header/footer)
-        // Actually Layout renders content in a flex container. 
-        // Let's refine the layout first. 
-        // We'll place the content in center.
+            // 2. Get current transform values
+            // We need the values from the shared values. 
+            // Note: Reading .value directly on JS thread inside a callback works in Reanimated 2+.
+            const s = scale.value;
+            const tx = translateX.value;
+            const ty = translateY.value;
 
-        // Simplified Logic: 
-        // We are cropping "what is seen in circle". 
-        // Circle is at center of screen.
+            // 3. Calculate Crop Rect in "View Px" (relative to the unscaled image view top-left)
 
-        // Calculate crop rectangle relative to the *scaled and translated* image
-        // Then map back to original image pixels.
+            // The center of the visible area (mask) relative to the screen is (SCREEN_WIDTH/2, SCREEN_HEIGHT/2) 
+            // (assuming centered layout).
+            // The center of the Image View (originally) is also at (SCREEN_WIDTH/2, SCREEN_HEIGHT/2) of the container.
 
-        // It's tricky to get right without precise layout measurements. 
-        // A simpler approach for now: 
-        // Just return the original URI for MVP if crop fails, but try to implement crop.
+            // The Image View is shifted by (tx, ty) and scaled by s.
+            // Vector from NewImageCenter to MaskCenter in screen pixels: (-tx, -ty).
+            // Vector in "Unscaled Image" pixels: (-tx / s, -ty / s).
 
-        // Let's wait for user feedback on "Crop" visuals to be perfect.
-        // For now, I'll assume we can't perfectly crop without more complex math 
-        // taking into account the exact screen coordinates of the mask vs image.
+            // Mask radius in "Unscaled Image" pixels: (MASK_SIZE / 2) / s.
 
-        // As a placeholder for functionality:
-        onCrop(imageUri); // Just pass back the URI for now to unblock
-        navigation.goBack();
+            // So, relative to the Image View Center (0,0 being center):
+            // cropCenterX_rel = -tx / s
+            // cropCenterY_rel = -ty / s
 
-        // TODO: Implement actual crop calculation using ImageEditor
-        // const cropData = {
-        //     offset: { x: ..., y: ... },
-        //     size: { width: ..., height: ... },
-        // };
-        // ImageEditor.cropImage(imageUri, cropData)...
+            // Convert to Top-Left reference (0,0 being top-left of image view):
+            // Image View dimensions: 
+            const viewWidth = SCREEN_WIDTH;
+            const viewHeight = (imageSize.height / imageSize.width) * SCREEN_WIDTH;
+
+            const cropCenterX = (viewWidth / 2) + (-tx / s);
+            const cropCenterY = (viewHeight / 2) + (-ty / s);
+
+            const cropWidthView = MASK_SIZE / s;
+            const cropHeightView = MASK_SIZE / s;
+
+            const cropXView = cropCenterX - (cropWidthView / 2);
+            const cropYView = cropCenterY - (cropHeightView / 2);
+
+            // 4. Map to Original Image Coordinates
+            const cropData = {
+                offset: {
+                    x: Math.round(Math.max(0, cropXView * ratio)),
+                    y: Math.round(Math.max(0, cropYView * ratio)),
+                },
+                size: {
+                    width: Math.round(cropWidthView * ratio),
+                    height: Math.round(cropHeightView * ratio),
+                },
+                displaySize: { width: MASK_SIZE, height: MASK_SIZE }, // Optimize output size
+            };
+
+            // Clamp checks
+            if (cropData.offset.x < 0) cropData.offset.x = 0;
+            if (cropData.offset.y < 0) cropData.offset.y = 0;
+
+            // Ensure we don't exceed image bounds
+            if (cropData.offset.x + cropData.size.width > imageSize.width) {
+                cropData.size.width = imageSize.width - cropData.offset.x;
+            }
+            if (cropData.offset.y + cropData.size.height > imageSize.height) {
+                cropData.size.height = imageSize.height - cropData.offset.y;
+            }
+
+            console.log('Crop Logic Debug:');
+            console.log('Screen W:', SCREEN_WIDTH);
+            console.log('Image Size:', imageSize);
+            console.log('Ratio:', ratio);
+            console.log('Transform:', { s, tx, ty });
+            console.log('View Crop Rect:', { x: cropXView, y: cropYView, w: cropWidthView, h: cropHeightView });
+            console.log('Final Crop Data:', cropData);
+
+            const result = await ImageEditor.cropImage(imageUri, cropData);
+
+            // Expected result is an object with uri (or path)
+            const resultUri = (result.uri || result.path) as string;
+
+            onCrop(resultUri);
+            navigation.goBack();
+
+        } catch (error) {
+            console.error('Crop failed:', error);
+            // Fallback: return original
+            onCrop(imageUri);
+            navigation.goBack();
+        }
     };
 
     return (
@@ -150,13 +204,22 @@ export default function ImageCropScreen() {
                     </YStack>
 
                     <Button
+                        size="$5"
+                        borderRadius={30}
+                        backgroundColor="$primary"
+                        color="#ffffff"
+                        shadowColor="$primary"
+                        shadowOffset={{ width: 0, height: 4 }}
+                        shadowOpacity={0.2}
+                        shadowRadius={8}
+                        height={52}
+                        pressStyle={{ opacity: 0.9 }}
+                        marginTop="$4"
                         position="absolute"
                         bottom={20}
-                        backgroundColor="$primary"
-                        color="white"
                         onPress={handleCrop}
                     >
-                        Confirm
+                        {t('common.continue', 'Continue')}
                     </Button>
                 </YStack>
             </SetupAccountLayout>
